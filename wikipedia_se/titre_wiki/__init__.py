@@ -1,0 +1,1 @@
+default_app_config = 'titre_wiki.apps.TitreWikiConfig'
