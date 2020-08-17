@@ -13,9 +13,9 @@ def search(request):
 
     """
     if request.method == 'GET':
-
+        print(request.GET.get('q','no'))
         query = request.GET.get('q', '')
-        Es_Results = search(request.query)
+        Es_Results = search(query)
         serializer = TitreSerializer(Es_Results, many=True)
 
         return JsonResponse(serializer.data, safe=False)

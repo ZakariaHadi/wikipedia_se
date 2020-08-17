@@ -1,9 +1,7 @@
-from .models import Titre
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl import Document, Text, Search
 from elasticsearch.helpers import bulk
 from elasticsearch import Elasticsearch
-
 
 
 # creation de la connextion avec le serveur elasticSearch

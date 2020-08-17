@@ -18,16 +18,24 @@ indx_currentTitre = 0
 
 
 def addArticle():
-    global indx_currentTitre
-    print('# 1 min => Adding article')
-    titreToAdd = allTitres[indx_currentTitre]
-    indx_currentTitre += 1
-    ArticleToAdd = wikipedia.summary(titreToAdd.titre,6)
+    try:
 
-    newArticle = Article(titre= titreToAdd,corps = ArticleToAdd)
-    newArticle.id = titreToAdd.id
+        global indx_currentTitre
+        print('# 1 min => Adding article')
+        titreToAdd = allTitres[indx_currentTitre]
+        indx_currentTitre += 1
+        ArticleToAdd = wikipedia.summary(titreToAdd.titre,6)
 
-    newArticle.save()
+        newArticle = Article(titre= titreToAdd,corps = ArticleToAdd)
+        newArticle.id = titreToAdd.id
+
+        newArticle.save()
+        return True
+    except wikipedia.exceptions.DisambiguationError as e:
+        #in this case the wikipedia api returns exception about the disamiguations of the title
+        # so we pass this one and continue adding others
+        return True
+
     return True
 
 
